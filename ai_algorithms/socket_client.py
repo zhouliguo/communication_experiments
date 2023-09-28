@@ -6,7 +6,7 @@ import cv2
 socket_c=socket.socket()                                           # 创建socket对象
 socket_c.connect(('localhost',4323))                               #建立连接
 
-socket_c.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, 1024*1024)
+#socket_c.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, 1024*512)
 bufsize = socket_c.getsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF)
 print(bufsize)
 
