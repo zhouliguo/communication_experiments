@@ -1,5 +1,5 @@
 import socket   
-import sys
+import time
 import cv2
 
                           
@@ -13,6 +13,7 @@ print(bufsize)
 vid = cv2.VideoCapture(0)
 
 while True:
+    start = time.time()
     ret, image = vid.read()
 
     #ab=input('客户端发出：')
@@ -23,6 +24,7 @@ while True:
         #c.send(ab.encode('utf-8'))                               #发送数据
         #data=c.recv(1024)                                       #接收一个1024字节的数据
         #print('收到：',data.decode('utf-8'))
-    image = cv2.resize(image, (4096, 4096))
-    print(len(image.tobytes()))
+    image = cv2.resize(image, (2048, 2048))
+    
     socket_c.send(image.tobytes())
+    print((time.time() - start)*1000, 'ms') 

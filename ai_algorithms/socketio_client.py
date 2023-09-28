@@ -7,7 +7,7 @@ import numpy as np
 
 #transf = transforms.ToTensor()
 
-from turbojpeg import TurboJPEG, TJPF_BGR 
+#from turbojpeg import TurboJPEG, TJPF_BGR 
 
 sioc = socketio.Client()
 
