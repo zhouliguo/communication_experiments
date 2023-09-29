@@ -2,9 +2,16 @@ import socket
 import numpy as np
 import cv2
 import time
+import os
+
+#filename = '/tmp/mysock'
+#if os.path.exists(filename):
+#    os.remove(filename)
 
 socket_s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)             # 创建socket对象
 socket_s.bind(('localhost',4323))                                      # 绑定地址
+#socket_s.bind(filename)
+
 socket_s.listen(5)                                                     # 建立5个监听
 
 #socket_s.setsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF, 1024*512)
@@ -12,7 +19,7 @@ bufsize = socket_s.getsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF)
 print(bufsize)
 
 cv2.namedWindow('server', 0)
-required = 2048*2048*3
+required = 3072*3072*3
 while True:
     conn, addr= socket_s.accept()                                       # 等待客户端连接
     while True:
@@ -21,7 +28,7 @@ while True:
         while len(data) < required:
             data += conn.recv(required - len(data))
         
-        image = np.frombuffer(data, np.uint8).reshape((2048, 2048, 3))
+        image = np.frombuffer(data, np.uint8).reshape((3072, 3072, 3))
         cv2.imshow('server', image)
         cv2.waitKey(1)
         print((time.time() - start)*1000, 'ms') 
