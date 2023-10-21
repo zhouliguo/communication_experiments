@@ -18,7 +18,7 @@ socket_s.listen(5)                                                     # 建立5
 bufsize = socket_s.getsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF)
 print(bufsize)
 
-#cv2.namedWindow('server', 0)
+cv2.namedWindow('server', 0)
 required = 3072*3072*3
 while True:
     conn, addr= socket_s.accept()                                       # 等待客户端连接
