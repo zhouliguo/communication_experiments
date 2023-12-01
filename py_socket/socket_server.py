@@ -19,7 +19,9 @@ bufsize = socket_s.getsockopt(socket.SOL_SOCKET, socket.SO_SNDBUF)
 print(bufsize)
 
 cv2.namedWindow('server', 0)
-required = 3072*3072*3
+w = 1793
+h = 1003
+required = w*h*3
 while True:
     conn, addr= socket_s.accept()                                       # 等待客户端连接
     while True:
@@ -28,7 +30,7 @@ while True:
         while len(data) < required:
             data += conn.recv(required - len(data))
         
-        image = np.frombuffer(data, np.uint8).reshape((3072, 3072, 3))
+        image = np.frombuffer(data, np.uint8).reshape((h, w, 3))
         cv2.imshow('server', image)
         cv2.waitKey(1)
         print((time.time() - start)*1000, 'ms') 

@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "ndTQiHAnEZhw/IZ4xaNK9L095SwV6lQ1nuz/wcPBx3Nw8jilxXMGckVQIIk8A76BHatsIyrAuDo7Ef5U9gfe3g==",
+  "success": true,
+  "projectFilePath": "D:\\projects\\autonomousdriving\\communication_experiments\\cs_socket\\cs_socket.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\zhouliguo\\.nuget\\packages\\opencvsharp4\\4.8.0.20230708\\opencvsharp4.4.8.0.20230708.nupkg.sha512",
+    "C:\\Users\\zhouliguo\\.nuget\\packages\\opencvsharp4.runtime.win\\4.8.0.20230708\\opencvsharp4.runtime.win.4.8.0.20230708.nupkg.sha512",
+    "C:\\Users\\zhouliguo\\.nuget\\packages\\opencvsharp4.windows\\4.8.0.20230708\\opencvsharp4.windows.4.8.0.20230708.nupkg.sha512",
+    "C:\\Users\\zhouliguo\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
+    "C:\\Users\\zhouliguo\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
