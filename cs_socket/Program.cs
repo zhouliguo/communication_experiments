@@ -17,7 +17,9 @@ using System.Net.Sockets;
 using System.Security.Authentication.ExtendedProtection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 using OpenCvSharp;
+using System.Runtime.InteropServices;
 
 namespace Client {
     class Client {
@@ -60,20 +62,35 @@ namespace Client {
             VideoCapture capture;
             capture = new VideoCapture();
             capture.Open(0);
+
+            int length = 640 * 480 * 3;
+            byte[] bytes = new byte[length];
+
+            //GCHandle handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
+            //handle.Free();
+
+            IPAddress ipAddress = IPAddress.Parse("127.0.0.1");
+            IPEndPoint remoteEP = new IPEndPoint(ipAddress, 4323);
+            Socket sender = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            sender.Connect(remoteEP);
+            while(!sender.Connected) {
+                continue;
+            }
+
             while(true){
                 Mat image = capture.RetrieveMat();
-                Cv2.ImShow("Demo", image);
+                Cv2.ImShow("client", image);
                 Cv2.WaitKey(1);
-            
+                Marshal.Copy(image.Data, bytes, 0, length);
+                
+                //bool success = image.GetArray(out Vec3b[] data);
+                
+                //Console.WriteLine(bytes.Length);
+                //Console.WriteLine(image.Rows);
+                //Console.WriteLine(image.Cols);
+                //Console.WriteLine(image.Channels());
 
-                //byte[] imageBytes = File.ReadAllBytes("C:/Users/zhouliguo/Desktop/images/bmw1.png");
-                //IPAddress ipAddress = IPAddress.Parse("127.0.0.1");
-                //IPEndPoint remoteEP = new IPEndPoint(ipAddress, 4323);
-                //Socket sender = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                //sender.Connect(remoteEP);
-                //while(sender.Connected) {
-                //    sender.Send(imageBytes);
-                //}
+                sender.Send(bytes);
             }
         }
     }
